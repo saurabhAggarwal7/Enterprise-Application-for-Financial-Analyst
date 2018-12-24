@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>Dashboard</title>
+	
+    <!--style sheets -->
+    <link rel="stylesheet" href="./dexters_css/font-awesome.css">
+    <link rel="stylesheet" href="./dexters_css/metisMenu.css">
+    <link rel="stylesheet" href="./dexters_css/animate.css">
+    <link rel="stylesheet" href="./dexters_css/bootstrap.css">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="./dexters_css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="./dexters_css/helper.css">
+    <link rel="stylesheet" href="./dexters_css/style.css">
+
+<style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+<body class="fixed-navbar sidebar-scroll">
+
+<!-- Header -->
+<div id="header">
+    <div class="color-line">
+    </div>
+    <div id="logo" class="light-version">
+        <span>
+            
+        </span>
+    </div>
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary"></span>
+        </div>
+        <form role="search" class="navbar-form-custom" method="post" action="#">
+            <div class="form-group">
+                <select id="stock_drop" class="form-control m-b" style="border-color: lightgrey!important;border: solid;height:35px !important;margin-top:10px !important">
+                        <option value="AAPL">Apple</option>
+                        <option value="MSFT">Microsoft</option>
+                        <option value="GOOGL">Google</option>
+                        <option value="AMZN">Amazon</option>
+                    </select>
+            </div>
+        </form>
+        <div class="mobile-menu">
+            <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="collapse mobile-navbar" id="mobile-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="" href="#">Login</a>
+                    </li>
+                    <li>
+                        <a class="" href="#">Logout</a>
+                    </li>
+                    <li>
+                        <a class="" href="#">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-right">
+        
+        
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div id="navigation" style="overflow: hidden; width: auto; height: 100%;">
+        <div class="profile-picture">
+            <a href="#">
+                <img src="./dexters_files/dexters_profile.png" class="img-circle m-b" alt="logo">
+            </a>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold font-uppercase">Dexters</span>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <small class="text-muted">Menu<b class="caret"></b></small>
+                    </a>
+                    <ul class="dropdown-menu animated flipInX m-t-xs">
+                         <li><a th:href="@{landing}">Logout</a></li>
+                    </ul>
+                </div>
+
+
+                <div id="sparkline1" class="small-chart m-t-sm"><canvas width="119" height="30" style="display: inline-block; width: 119px; height: 30px; vertical-align: top;"></canvas></div>
+                <div>
+                    <h4 class="font-extra-bold m-b-xs">
+                        $260 104,200
+                    </h4>
+                    <small class="text-muted">Your income from the last year in sales product.</small>
+                </div>
+            </div>
+        </div>
+
+		
+		<!--IMPORTANT-->
+		<!--Side menu-->
+        <ul class="nav" id="side-menu">
+            <li>
+                <a th:href="@{dashboard}"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right"></span> </a>
+            </li>
+            <li>
+                <a th:href="@{charts}"> <span class="nav-label">Charts</span><span class="label label-warning pull-right"></span> </a>
+            </li>
+            <li>
+                <a href="#"><span class="nav-label">Menu Parent</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false">
+                   <li><a th:href="@{info}">Information</a></li>
+                    <li><a th:href="@{faq}">FAQs</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#"><span class="nav-label">Parent</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                    <li><a th:href="@{notes}">Notes</a></li>
+                    <li><a th:href="@{tables}">Tables</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 0px; position: absolute; top: 0px; opacity: 0.3; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 108.63px;"></div><div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="content">
+
+<div class="row">
+    
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading">
+                <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                    <a class="closebox"><i class="fa fa-times"></i></a>
+                </div>
+                Close Price
+            </div>
+            <div class="panel-body">
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-bar-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" width="800" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 301px; height: 300px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 43px; top: 285px; left: 14px; text-align: center;">1</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 43px; top: 285px; left: 62px; text-align: center;">2</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 43px; top: 285px; left: 109px; text-align: center;">3</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 43px; top: 285px; left: 157px; text-align: center;">4</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 43px; top: 285px; left: 204px; text-align: center;">5</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 43px; top: 285px; left: 252px; text-align: center;">6</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 273px; left: 6px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 234px; left: 6px; text-align: right;">5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 195px; left: 0px; text-align: right;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 156px; left: 0px; text-align: right;">15</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 117px; left: 0px; text-align: right;">20</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 78px; left: 0px; text-align: right;">25</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 39px; left: 0px; text-align: right;">30</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 0px; text-align: right;">35</div></div></div><canvas class="flot-overlay" width="301" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 301px; height: 300px;"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading">
+                <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                    <a class="closebox"><i class="fa fa-times"></i></a>
+                </div>
+                Trade Volume
+            </div>
+            <div class="panel-body">
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-area-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" width="673" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 673px; height: 300px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 15px; text-align: center;">1</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 96px; text-align: center;">2</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 177px; text-align: center;">3</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 258px; text-align: center;">4</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 339px; text-align: center;">5</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 419px; text-align: center;">6</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 500px; text-align: center;">7</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 581px; text-align: center;">8</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 74px; top: 284px; left: 662px; text-align: center;">9</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 272px; left: 7px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 217px; left: 1px; text-align: right;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 163px; left: 1px; text-align: right;">20</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 109px; left: 1px; text-align: right;">30</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 55px; left: 1px; text-align: right;">40</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 1px; text-align: right;">50</div></div></div><canvas class="flot-overlay" width="673" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 673px; height: 300px;"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading">
+                <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                    <a class="closebox"><i class="fa fa-times"></i></a>
+                </div>
+                Low Vs High
+            </div>
+            <div class="panel-body">
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-sin-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" width="1046" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1046px; height: 300px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 22px; text-align: center;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 97px; text-align: center;">1</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 172px; text-align: center;">2</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 247px; text-align: center;">3</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 322px; text-align: center;">4</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 397px; text-align: center;">5</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 472px; text-align: center;">6</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 547px; text-align: center;">7</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 622px; text-align: center;">8</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 697px; text-align: center;">9</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 769px; text-align: center;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 844px; text-align: center;">11</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 919px; text-align: center;">12</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 69px; top: 284px; left: 994px; text-align: center;">13</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 249px; left: 1px; text-align: right;">-1.0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 192px; left: 1px; text-align: right;">-0.5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 136px; left: 5px; text-align: right;">0.0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 80px; left: 5px; text-align: right;">0.5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 23px; left: 5px; text-align: right;">1.0</div></div></div><canvas class="flot-overlay" width="1046" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1046px; height: 300px;"></canvas><div class="legend"><div style="position: absolute; width: 43px; height: 30px; top: 13px; right: 13px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:13px;right:13px;;font-size:smaller;color:#6a6c6f"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(98,203,49);overflow:hidden"></div></div></td><td class="legendLabel">sin(x)</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(239,239,239);overflow:hidden"></div></div></td><td class="legendLabel">cos(x)</td></tr></tbody></table></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .flot-chart-pie-content {
+        width: 200px;
+        height: 200px;
+        margin: auto;
+    }
+    .flot-pie-chart {
+        display: block;
+        padding-top: 50px;
+        height: 300px;
+    }
+</style>
+
+    </div>
+
+    <!-- Right sidebar -->
+    <footer class="footer">
+        <span class="pull-right">
+            Example text
+        </span>
+        Company 2018-2020
+    </footer>
+
+</div>
+
+<script type="text/javascript" th:src="@{/dexters_js/charts/analytics.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.slimscroll.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/bootstrap.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.flot.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.flot.resize.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.flot.pie.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/dexters_js/charts/curvedLines.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/index.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/metisMenu.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/icheck.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.peity.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/index_01.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/homer.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/charts.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/jquery.flot.time.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/charts/charts_load.js}"></script>
+
+<script>
+
+
+</script>
+    <script>
+        
+
+    </script>
+
+
+</body></html>

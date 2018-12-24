@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        api_key: 86b85gqhr2yvzk
+        authorize: true
+        onLoad: onLinkedInLoad
+        //scope: r_basicprofile r_emailaddress
+    </script>
+
+    <script type="text/javascript">
+    // Setup an event listener to make an API call once auth is complete
+    function onLinkedInLoad() {
+        IN.Event.on(IN, "auth", getProfileData);
+    }
+    
+    // Use the API call wrapper to request the member's profile data
+    function getProfileData() {
+        IN.API.Profile("me").fields("id", "first-name", "last-name", "headline", "location", "picture-url", "public-profile-url", "email-address").result(displayProfileData).error(onError);
+    }
+
+    // Handle the successful return from the API call
+    function displayProfileData(data){
+        var user = data.values[0];
+        
+        document.getElementById('profileData').style.display = 'block';
+        var email=user.emailAddress;
+        var role;
+        sessionStorage.setItem("firstName",user.firstName);
+        sessionStorage.setItem("lastName",user.lastName);
+        if (email === "abhishek.s.prabhudesai@gmail.com") {
+            sessionStorage.setItem("role",'admin');
+        } else {
+            sessionStorage.setItem("role",'user');
+        }
+        
+        alert("Firstname:: "+sessionStorage.firstName);
+        alert("Lastname:: "+sessionStorage.lastName);
+        alert("role:: "+sessionStorage.role);
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+    
+    // Destroy the session of linkedin
+    function logout(){
+        IN.User.logout(removeProfileData);
+    }
+    
+    // Remove profile data from page
+    function removeProfileData(){
+        document.getElementById('profileData').remove();
+    }
+    </script>
+</head>
+<body>
+        
+        
+        <!-- sign in with linkedin button -->
+        <script type="in/Login">
+</script>
+
+        <!-- display profile info -->
+        <div id="profileData" style="display: none;">
+        <p><a href="javascript:void(0);" onclick="logout()">Logout</a></p>
+        <a th:href="@{dashboard}">Go to Other Page</a>
+    </div>
+    
+</body>
+</html>

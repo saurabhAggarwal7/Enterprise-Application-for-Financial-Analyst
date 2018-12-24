@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        <script>
+                window.fbAsyncInit = function() {
+                  FB.init({
+                    appId            : '335888447224047',
+                    autoLogAppEvents : true,
+                    xfbml            : true,
+                    version          : 'v3.2'
+                  });
+                
+                //   FB.getLoginStatus(function(response) {
+                //         if(response.status ==='connected'){
+                //             document.getElementById('status').innerHTML = 'We are connected.';
+                //         } else if(response.status ==='not_autherized'){
+                //             document.getElementById('status').innerHTML = 'We are not connected.';
+                //         } else{
+                //             document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+                //         }
+
+                //     });
+
+                };
+              
+                (function(d, s, id){
+                   var js, fjs = d.getElementsByTagName(s)[0];
+                   if (d.getElementById(id)) {return;}
+                   js = d.createElement(s); js.id = id;
+                   js.src = "https://connect.facebook.net/en_US/sdk.js";
+                   fjs.parentNode.insertBefore(js, fjs);
+                 }(document, 'script', 'facebook-jssdk'));
+
+                 function login(){
+
+                    // FB.login(function (response){
+                    //     if(response.status ==='connected'){
+                    //         document.getElementById('status').innerHTML = 'We are connected';
+                    //         console.log(response);
+                    //         console.log(response.authResponse);
+                    //     } else if(response.status ==='not_autherized'){
+                    //         document.getElementById('status').innerHTML = 'We are not connected.';
+                    //     } else{
+                    //         document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+                    //     }
+                        
+
+
+                        FB.login(function (response){
+                        if(response.status ==='connected')
+                        {
+                            document.getElementById('fbloginbtn').style.display = 'none';
+                            document.getElementById('profileData').style.display = 'block';
+
+                            FB.api('/me?fields= id,name,first_name,last_name,email',function(userData){
+                                console.log(userData);
+                                console.log(userData.name);
+                                console.log(userData.email);
+                                console.log(userData.first_name);
+                                console.log(userData.last_name);
+
+                                var email=userData.email;
+                                var role;
+                                sessionStorage.setItem("firstName",userData.first_name);
+                                sessionStorage.setItem("lastName",userData.last_name);
+                                if (email === "abhishek.s.prabhudesai@gmail.com") {
+                                    sessionStorage.setItem("role",'admin');
+                                } else {
+                                    sessionStorage.setItem("role",'user');
+                                }
+                            });
+                        } 
+                    });   
+                 }
+
+
+                 function signOut(){
+                    
+                    FB.logout(function(response) {
+                    // user is now logged out
+                    });
+                    document.getElementById('fbloginbtn').style.display = 'block';
+                    document.getElementById('profileData').style.display = 'none';
+                    sessionStorage.clear();
+                 }
+
+              </script>
+
+
+              <div id="status"></div>
+              <!-- <button onclick="login()">Login</button> -->
+              <fb:login-button id="fbloginbtn" scope="public_profile,email" onlogin="login()">
+                </fb:login-button>
+
+                <div id="profileData" style="display: none;">
+                        <p>testing</p>
+                        <button onclick="signOut()">SignOut</button>
+                        <a href="otherpage.html">Go to Other Page</a>
+                    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+<!-- <fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button> -->
+
+
+
+<!-- function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  } -->

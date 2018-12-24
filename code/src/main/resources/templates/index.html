@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!--SSO -->
+    <meta name="google-signin-client_id" content="95474124022-6rtun58bkd2dftgssdvtcnploa6du7a4.apps.googleusercontent.com">
+     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        api_key: 86b85gqhr2yvzk
+        authorize: true
+        onLoad: onLinkedInLoad
+        //scope: r_basicprofile r_emailaddress
+    </script>
+    <!-- SSO -->
+
+    <!-- Page title -->
+    <title>Login</title>
+
+    <!--style sheets -->
+    <link th:href="@{/dexters_css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/metisMenu.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/animate.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/bootstrap.css}" rel="stylesheet" />
+    
+    <link th:href="@{/dexters_css/pe-icon-7-stroke.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/helper.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/style.css}" rel="stylesheet" />
+
+<style type="text/css">
+.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}
+.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}
+</style></head>
+
+<body class="blank">
+
+<!--screen-->
+<div class="splash" style="display: none;">
+<div class="color-line">
+</div>
+<div class="splash-title"><h1>LOGIN</h1><p></p><div class="spinner"><div class="rect1"></div> 
+<div class="rect2"></div> 
+<div class="rect3"></div> 
+<div class="rect4"></div> 
+<div class="rect5"></div> 
+</div> 
+</div> 
+</div>
+
+<!-- back button-->
+<div class="color-line"></div>
+<div class="back-link">
+    <a id="back_dashboard_btn" th:href="@{landing}"  class="btn btn-primary">Back to Dashboard</a>
+</div>
+
+
+<div class="login-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center m-b-md">
+                <h2>WELCOME</h2>
+                <small></small>
+            </div>
+            <div class="hpanel">
+                <div class="panel-body">
+                           <form action="#" id="loginForm">
+                            <div class="form-group">
+                                <label class="control-label" for="username">Username</label>
+                                <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="username" id="firstname" class="form-control">
+                                <span class="help-block small"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="password">Password</label>
+                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
+                                <span class="help-block small"></span>
+                            </div>
+                            <div class="checkbox">
+                                <div class="icheckbox_square-green checked" style="position: relative;"><input type="checkbox" class="i-checks" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                <p class="help-block small"></p>
+                            </div>
+                            <a id="login_btn" class="btn btn-success btn-block" th:href="@{dashboard}" >Login</a>
+                             <a id="tester" th:href="@{dashboard}"></a>
+                              <a id="tester_fail" th:href="@{sound}"></a>
+                              <br>
+                             						<script type="in/Login"></script>
+                                  <!-- display profile info -->
+        <div id="profileData" style="display: none;">
+        <p><a href="javascript:void(0);" onclick="logout()">Logout</a></p>
+        
+     </div>
+    </form>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <strong></strong><br> 2018 Copyright Dexters
+           
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" th:src="@{/dexters_js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/jquery.slimscroll.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/metisMenu.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/login.js}"></script>
+
+<!-- SSO -->
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+<script type="text/javascript" th:src="@{/dexters_js/platform.js}"></script>
+<!-- SSO -->
+
+
+
+
+
+
+ <script type="text/javascript">
+    // Setup an event listener to make an API call once auth is complete
+    function onLinkedInLoad() {
+    	IN.Event.on(IN, "auth", getProfileData);
+        
+    }
+    
+    // Use the API call wrapper to request the member's profile data
+    function getProfileData() {
+        IN.API.Profile("me").fields("id", "first-name", "last-name", "headline", "location", "picture-url", "public-profile-url", "email-address").result(displayProfileData).error(onError);
+    }
+
+    // Handle the successful return from the API call
+    function displayProfileData(data){
+        var user = data.values[0];
+        
+        
+        document.getElementById('profileData').style.display = 'block';
+        var email=user.emailAddress;
+        var role;
+        sessionStorage.setItem("firstName",user.firstName);
+        sessionStorage.setItem("lastName",user.lastName);
+        /*if(email === "abhishek.s.prabhudesai@gmail.com"||email ==="sowndhariyanandu.in@gmail.com"){
+        	
+           console.log(email);
+           
+            } else{
+            	 
+            	$("#tester_fail")[0].click();
+            }*/
+       
+       // apiLinkedIn(sessionStorage.firstName);
+            if(sessionStorage.firstName==="Sowndhariya"){
+            	$("#tester")[0].click();
+            }
+            else{
+            	$("#tester_fail")[0].click();
+            	
+            }
+        
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+    
+    // Destroy the session of linkedin
+    function logout(){
+        IN.User.logout(removeProfileData);
+    }
+    
+    // Remove profile data from page
+    function removeProfileData(){
+        document.getElementById('profileData').remove();
+    }
+    
+    function apiLinkedIn(firstname){
+    	
+    	var Twt = {}
+    	Twt["firstname"] =firstname;
+      $.ajax({
+          type: "POST",
+          contentType: "application/json",
+          url: "/v1/reqvalues",
+          data: JSON.stringify(Twt),
+          dataType: 'json',
+          cache: false,
+          timeout: 600000,
+          success: function (data) {
+        	  $("#test2")[0].click();
+            },
+      });
+          
+    }
+    
+    
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '335888447224047',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v3.2'
+        });
+      
+      //   FB.getLoginStatus(function(response) {
+      //         if(response.status ==='connected'){
+      //             document.getElementById('status').innerHTML = 'We are connected.';
+      //         } else if(response.status ==='not_autherized'){
+      //             document.getElementById('status').innerHTML = 'We are not connected.';
+      //         } else{
+      //             document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+      //         }
+
+      //     });
+
+      };
+    
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+       function loginfb(){
+
+          // FB.login(function (response){
+          //     if(response.status ==='connected'){
+          //         document.getElementById('status').innerHTML = 'We are connected';
+          //         console.log(response);
+          //         console.log(response.authResponse);
+          //     } else if(response.status ==='not_autherized'){
+          //         document.getElementById('status').innerHTML = 'We are not connected.';
+          //     } else{
+          //         document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+          //     }
+              
+
+
+              FB.login(function (response){
+              if(response.status ==='connected')
+              {
+                  document.getElementById('fbloginbtn').style.display = 'none';
+                  document.getElementById('profileData').style.display = 'block';
+
+                  FB.api('/me?fields= id,name,first_name,last_name,email',function(userData){
+                      console.log(userData);
+                      console.log(userData.name);
+                      console.log(userData.email);
+                      console.log(userData.first_name);
+                      console.log(userData.last_name);
+
+                      var email=userData.email;
+                      var role;
+                      sessionStorage.setItem("firstName",userData.first_name);
+                      sessionStorage.setItem("lastName",userData.last_name);
+                      if (email === "abhishek.s.prabhudesai@gmail.com") {
+                          sessionStorage.setItem("role",'admin');
+                      } else {
+                          sessionStorage.setItem("role",'user');
+                      }
+                  });
+              } 
+          });   
+       }
+
+ function signOut(){
+          
+          FB.logout(function(response) {
+          // user is now logged out
+          });
+          document.getElementById('fbloginbtn').style.display = 'block';
+          document.getElementById('profileData').style.display = 'none';
+          sessionStorage.clear();
+       } 
+    
+    </script>
+
+
+
+</body></html>

@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Google SignIn</title>
+        <meta name="google-signin-client_id" content="95474124022-6rtun58bkd2dftgssdvtcnploa6du7a4.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        
+        <style>
+            .g-signin2{
+                margin-left: 500px;
+                margin-top: 200px;
+            }
+            .data{
+                display: none;
+            }
+        </style>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div class="data">
+        <p>Profile Details</p>
+        <img id="pic" class="img-circle" width="100" height="100">
+        <p>Email Address</p>
+        <p id="email" class="alert alert-danger"></p>
+        <p>First Name</p>
+        <p id="firstName" class="alert alert-danger"></p>
+        <p>Last Name</p>
+        <p id="lastName" class="alert alert-danger"></p>
+        <a href="otherpage.html">Go to Other Page</a>
+        <button onclick="signOut()" class="btn btn-danger">SignOut</button>
+    </div>
+ 
+ 
+ 
+ 
+ <script type="text/javascript">
+  
+  
+  
+  function onSignIn (googleUser)
+  {
+	  
+      var profile= googleUser.getBasicProfile();
+      $(".g-signin2").css("display","none");
+      $(".data").css("display","block");
+      $("#pic").attr('src',profile.getImageUrl());
+      $("#email").text(profile.getEmail());
+  	$("#firstName").text(profile.getGivenName());
+  	$("#lastName").text(profile.getFamilyName());
+  	// $.cookie.raw = true;
+  	// $.cookie('loginID',profile.getEmail());
+  	// $.cookie('firstName',profile.getGivenName());
+      // $.cookie('lastName',profile.getFamilyName());
+      var email=profile.getEmail();
+      var role;
+      sessionStorage.setItem("firstName",profile.getGivenName());
+      sessionStorage.setItem("lastName",profile.getFamilyName());
+      if (email === "abhishek.s.prabhudesai@gmail.com") {
+          sessionStorage.setItem("role",'admin');
+      } else {
+          sessionStorage.setItem("role",'user');
+      }
+  }
+
+  function signOut()
+  {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function(){
+          alert("You have been Successfully signed out");
+
+          $(".g-signin2").css("display","block");
+          $(".data").css("display","none");
+      });
+  }
+  
+  
+  
+  
+  
+  </script>
+  
+ 
+ 
+  </body>
+  
+  
+</html>

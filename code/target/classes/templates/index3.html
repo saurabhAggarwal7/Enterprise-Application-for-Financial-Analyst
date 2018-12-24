@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.
+css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin
+="anonymous">
+ 
+  <style>
+    h1 {
+      margin: 2em 0;
+    }
+  </style>
+  <!-- widget stuff here -->
+  <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/js/okta-sign-in.
+min.js" type="text/javascript"></script>
+  <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/css/okta-sign-in.
+min.css" type="text/css" rel="stylesheet"/>
+  <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/css/okta-theme.cs
+s" type="text/css" rel="stylesheet"/>
+</head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Okta Login</h1>
+      
+      <!-- where the sign-in form will be displayed -->
+      <div id="sign-in-container"></div>
+     
+    </div>
+    <!-- use the Okta widget to power authentication! -->
+<script type="text/javascript">
+  /*var oktaSignIn = new OktaSignIn({
+    baseUrl: "https://dev-134167.oktapreview.com",
+    clientId: "0oahphozt1OqdiJgN0h7",
+    redirectUri:"http://localhost:8080/Okta/Otherpage",
+    authParams: {
+      issuer: "https://dev-134167.oktapreview.com/oauth2/default",
+      responseType: ["token", "id_token"],
+      display: "page"
+    }*/
+    var oktaSignIn = new OktaSignIn({
+        baseUrl: "https://dev-664350.oktapreview.com/",
+        clientId: "0oai4e0qenO0u6O1W0h7",
+        redirectUri:"http://localhost:7070/dashboard",
+        authParams: {
+          issuer: "https://dev-664350.oktapreview.com/oauth2/default",
+          responseType: ["token", "id_token"],
+          display: "page"
+        },
+  });
+
+  if (oktaSignIn.token.hasTokensInUrl()) {
+    oktaSignIn.token.parseTokensFromUrl(
+      // If we get here, the user just logged in.
+     // console.log("test1");
+      function success(res) {
+      	if (res.status === 'SUCCESS'){
+    		console.log("testing");
+    	}  	    
+        var accessToken = res[0];
+        var idToken = res[1]
+        console.log("test2");
+        oktaSignIn.tokenManager.add("accessToken", accessToken);
+        oktaSignIn.tokenManager.add("idToken", idToken);
+
+        window.location.hash = "";
+        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+        console.log("test3");
+        //res.session.setCookieAndRedirect(redirectUri);
+      },
+      function error(err) {
+        console.error(err);
+        console.log("test4");
+      }
+    );
+  } else {
+    oktaSignIn.session.get(function (res) {
+
+      // If we get here, the user is already signed in.
+      console.log("test5");
+      //if(res.status === 'ACTIVE')
+    	 // window.location.href = "http://localhost:7070/dashboard";
+      console.log(res.status);
+      if (res.status === 'ACTIVE') {
+        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
+        //document.getElementById("messageBox").innerHTML = "Hello, " + res.login +" test";
+    //abhishek.prabhudesai@sjsu.edu
+    //res.session.setCookieAndRedirect(redirectUri);
+	    console.log(res.login);
+    	var role;
+    	var email= res.login;
+    	console.log(res.login);
+    	console.log("test6");
+	    sessionStorage.setItem("firstName",res.login);
+	    //sessionStorage.setItem("lastName",res.user.profile);
+	    if (email === "abhishek.prabhudesai@sjsu.edu"||"sowndhariya.nandarajkumar@sjsu.edu"||"saurabh.aggarwal@sjsu.edu"||"neuron.sjsu@gmail.com") {
+	        sessionStorage.setItem("role",'admin');
+	        alert("hai")
+	        console.log("sessioninide"+sessionStorage.firstName);
+		    console.log("sessionide"+sessionStorage.role);
+	    } else {
+	        sessionStorage.setItem("role",'user');
+	    }
+	    alert("role::"+res.role);
+	    alert("emaill :: "+res.email)
+	    console.log("session"+sessionStorage.firstName);
+	    console.log("session"+sessionStorage.role);
+	    window.location.href = "http://localhost:7070/dashboard";
+	    //res.session.setCookieAndRedirect("http://localhost:8080/Okta/dashboard.html");
+	    console.log("test7");
+    return;
+      }
+      
+      
+      
+      console.log("test10");
+      // If we get here, the user is not logged in, so we should show the sign-in form.
+      oktaSignIn.renderEl(
+        { el: '#sign-in-container' },
+        function success(res) {console.log("test8"); },
+        function error(err) {
+        	console.log("test9");
+          console.error(err);
+        }
+      );
+    });
+    console.log("test13");
+  }
+</script>
+  </body>
+</html>
+

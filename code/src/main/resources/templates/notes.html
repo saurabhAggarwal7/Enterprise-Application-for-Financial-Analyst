@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Page title -->
+    <title>Notes</title>
+
+    <!--style sheets -->
+    <link th:href="@{/dexters_css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/metisMenu.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/animate.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/bootstrap.css}" rel="stylesheet" />
+    
+    <link th:href="@{/dexters_css/pe-icon-7-stroke.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/helper.css}" rel="stylesheet" />
+    <link th:href="@{/dexters_css/style.css}" rel="stylesheet" />
+
+<style type="text/css">
+.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}
+.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+<body class="fixed-navbar sidebar-scroll">
+
+<!--screen-->
+<div class="splash" style="display: none;"> <div class="color-line"></div><div class="splash-title"><h1>Notes</h1><p></p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+
+<!-- Header -->
+<div id="header">
+    <div class="color-line">
+    </div>
+    <div id="logo" class="light-version">
+        <span>
+            
+        </span>
+    </div>
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary"></span>
+        </div>
+        
+        <div class="mobile-menu">
+            <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="collapse mobile-navbar" id="mobile-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="" href="#">Login</a>
+                    </li>
+                    <li>
+                        <a class="" href="#">Logout</a>
+                    </li>
+                    <li>
+                        <a class="" href="#">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div id="navigation" style="overflow: hidden; width: auto; height: 100%;">
+        <div class="profile-picture">
+            <a href="#">
+                <img src="./dexters_files/dexters_profile.png" class="img-circle m-b" alt="logo">
+            </a>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold font-uppercase">Dexters</span>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <small class="text-muted">Menu<b class="caret"></b></small>
+                    </a>
+                    <ul class="dropdown-menu animated flipInX m-t-xs">
+                         <li><a th:href="@{landing}">Logout</a></li>
+                    </ul>
+                </div>
+
+
+                <div id="sparkline1" class="small-chart m-t-sm"><canvas width="119" height="30" style="display: inline-block; width: 119px; height: 30px; vertical-align: top;"></canvas></div>
+                <div>
+                    <h4 class="font-extra-bold m-b-xs">
+                        $260 104,200
+                    </h4>
+                    <small class="text-muted">Your income from the last year in sales product.</small>
+                </div>
+            </div>
+        </div>
+
+		
+		<!--IMPORTANT-->
+		<!--Side menu-->
+        <ul class="nav" id="side-menu">
+            <li>
+                <a th:href="@{dashboard}"> <span class="nav-label">Dashboard</span> <span class="label label-success pull-right"></span> </a>
+            </li>
+            <li>
+                <a th:href="@{charts}"> <span class="nav-label">Charts</span><span class="label label-warning pull-right"></span> </a>
+            </li>
+         <li>
+                <a href="#"><span class="nav-label">Menu Parent</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false">
+                    <li><a th:href="@{info}">Information</a></li>
+                    <li><a th:href="@{faq}">FAQs</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#"><span class="nav-label">Parent</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                     <li><a th:href="@{notes}">Notes</a></li>
+                    <li><a th:href="@{tables}">Tables</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 0px; position: absolute; top: 0px; opacity: 0.3; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 108.63px;"></div><div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper" style="min-height: 546px;">
+
+<div class="normalheader ">
+    <div class="hpanel">
+        <div class="panel-body">
+            <a class="small-header-action" href="#">
+                <div class="clip-header">
+                    <i class="fa fa-arrow-up"></i>
+                </div>
+            </a>
+
+            <div id="hbreadcrumb" class="pull-right m-t-lg">
+                <ol class="hbreadcrumb breadcrumb">
+                    <li><a href="#">Dashboard</a></li>
+                    <li>
+                        <span>App views</span>
+                    </li>
+                    <li class="active">
+                        <span>Notes</span>
+                    </li>
+                </ol>
+            </div>
+            <h2 class="font-light m-b-xs">
+                Notes
+            </h2>
+            <small>Traders setup your notes here!</small>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="hpanel panel-group">
+                <div class="panel-body">
+                    <div class="text-center text-muted font-bold">Trader Notes</div>
+
+                </div>
+                <div class="panel-section">
+
+                    
+                    <button type="button" data-toggle="collapse" data-target="#notes" class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm">
+                        All notes <i class="fa fa-angle-down"></i>
+                    </button>
+                </div>
+
+                <div id="notes" class="collapse">
+
+                    <div class="panel-body note-link l1">
+                        <a href="#" data-toggle="tab">
+                        <small class="pull-right text-muted"></small>
+                            <h5>Notes</h5>
+                        <div class="small" id="n1">
+                             
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="panel-body note-link l2">
+                        <a href="#" data-toggle="tab">
+                        <small class="pull-right text-muted"></small>
+                        <h5>
+                            Notes
+                        </h5>
+                        <div class="small" id="n2">
+                             
+                        </div>
+                            </a>
+                    </div>
+
+                    <div class="panel-body note-link l3">
+                        <a href="#" data-toggle="tab">
+                        <small class="pull-right text-muted"></small>
+                        <h5>
+                            Notes 
+                        </h5>
+                        <div class="small" id="n3">
+                             
+                        </div>
+                            </a>
+                    </div>
+
+                    <div class="panel-body note-link l4">
+                        <a href="#" data-toggle="tab">
+                        <small class="pull-right text-muted"></small>
+                        <h5>
+                            Notes 
+                        </h5>
+                        <div class="small" id="n4">
+                             
+                        </div>
+                            </a>
+                    </div>
+
+                    <div class="panel-body note-link l5">
+                        <a href="#" data-toggle="tab">
+                        <small class="pull-right text-muted"></small>
+                        <h5> Notes 
+                        </h5>
+                        <div class="small" id="n5">
+                             
+                        </div>
+                            </a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="hpanel">
+
+                <div class="panel-body">
+
+                    <div class="text-center hidden">
+                        Text
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="note1" class="tab-pane active">
+                            <div class="pull-right text-muted m-l-lg">
+                               
+                            </div>
+                            <h3>Note</h3>
+                            <hr>
+                            <div class="note-content">
+                                <textarea id="values" class="form-control"> 
+                                </textarea>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-default" onclick="submitSave()"><i class="fa fa-thumbs-o-up"></i> Save</button>
+                                 <button class="btn btn-sm btn-default" onclick="submit()"><i class="fa fa-twitter" ></i>Tweet</button>
+                                
+                            </div>
+                        </div>
+
+                        <div id="note2" class="tab-pane">
+                            <div class="pull-right text-muted m-l-lg">
+                                22.01.2016
+                            </div>
+                            <h3>Text</h3>
+                            <hr>
+                            <div class="note-content">
+                                <textarea class="form-control">Text
+                                </textarea>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-thumbs-o-up"></i> Save</button>
+                                <button class="btn btn-sm btn-default"><i class="fa fa-trash"></i> Remove</button>
+                            </div>
+                        </div>
+
+                        <div id="note3" class="tab-pane">
+                            <div class="pull-right text-muted m-l-lg">
+                                14.03.2016
+                            </div>
+                            <h3>Text</h3>
+                            <hr>
+                            <div class="note-content">
+                                <textarea class="form-control">Text
+                                </textarea>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-thumbs-o-up"></i> Save</button>
+                                <button class="btn btn-sm btn-default"><i class="fa fa-trash"></i> Remove</button>
+                            </div>
+                            <a id="test2" th:href="@{notes}"></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    <!-- Right sidebar -->
+
+    <!-- Footer-->
+    <footer class="footer">
+        <span class="pull-right">
+            Dexters
+        </span>
+        Company 2018
+    </footer>
+
+</div>
+
+<!-- Vendor scripts -->
+
+
+<script type="text/javascript" th:src="@{/dexters_js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/jquery.slimscroll.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/metisMenu.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/index.js}"></script>
+<script type="text/javascript" th:src="@{/dexters_js/notes.js}"></script>
+
+<!-- main scripts -->
+<script src="./dexters_js/homer.min.js"></script>
+
+<script type="text/javascript">
+
+function submit(){
+	var Status = {}
+  Status["notes"] =$("#values").val().trim();
+  $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/v1/twitter",
+      data: JSON.stringify(Status),
+      dataType: 'json',
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+    	  $("#test2")[0].click();
+        },
+  });
+  
+	
+}
+
+
+
+function submitSave(){
+	
+	var Twt = {}
+	Twt["notes"] =$("#values").val().trim();
+  $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/v1/Postnotes",
+      data: JSON.stringify(Twt),
+      dataType: 'json',
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+    	  $("#test2")[0].click();
+        },
+  });
+  
+	
+}
+
+function dexletemsg(){
+	
+	
+}
+
+
+
+
+
+
+</script>
+
+
+</body></html>
